@@ -17,6 +17,7 @@ public class ProductRowMapper implements RowMapper<Product> {
         product.setProductId(resultSet.getInt("product_id"));
         product.setProductName(resultSet.getString("product_name"));
 
+        //把 sql 的string → Java enum
         String s = resultSet.getString("category");
         ProductCategory category = ProductCategory.valueOf(s);
         product.setCategory(category);

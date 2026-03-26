@@ -50,6 +50,7 @@ public class ProductDaoImpl implements ProductDao {
 
         Map<String, Object> map = new HashMap<>();
         map.put("productName", productRequest.getProductName());
+        // 要把 Java enum → String
         map.put("category", productRequest.getCategory().name());
         map.put("imageUrl", productRequest.getImageUrl());
         map.put("price", productRequest.getPrice());
@@ -86,6 +87,16 @@ public class ProductDaoImpl implements ProductDao {
         map.put("description", productRequest.getDescription());
 
         map.put("lastModifiedDate", new Date());
+
+        namedParameterJdbcTemplate.update(sql, map);
+    }
+
+    @Override
+    public void deleteProduct(Integer productId) {
+        String sql="DELETE FROM product WHERE product_id=:productId";
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("productId", productId);
 
         namedParameterJdbcTemplate.update(sql, map);
     }
