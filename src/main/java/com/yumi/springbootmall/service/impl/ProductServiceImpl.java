@@ -1,7 +1,9 @@
 package com.yumi.springbootmall.service.impl;
 
 
+import com.yumi.springbootmall.constant.ProductCategory;
 import com.yumi.springbootmall.dao.ProductDao;
+import com.yumi.springbootmall.dto.ProductQueryParams;
 import com.yumi.springbootmall.dto.ProductRequest;
 import com.yumi.springbootmall.model.Product;
 import com.yumi.springbootmall.service.ProductService;
@@ -17,8 +19,8 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
 
     @Override
-    public List<Product> getProducts() {
-        return productDao.getProducts();
+    public List<Product> getProducts(ProductQueryParams productQueryParams) {
+        return productDao.getProducts(productQueryParams);
     }
 
     @Override

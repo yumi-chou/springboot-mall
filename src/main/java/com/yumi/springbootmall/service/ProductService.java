@@ -1,12 +1,14 @@
 package com.yumi.springbootmall.service;
 
+import com.yumi.springbootmall.constant.ProductCategory;
+import com.yumi.springbootmall.dto.ProductQueryParams;
 import com.yumi.springbootmall.dto.ProductRequest;
 import com.yumi.springbootmall.model.Product;
 
 import java.util.List;
 
 public interface ProductService {
-    List<Product> getProducts();
+    List<Product> getProducts(ProductQueryParams productQueryParams);;
 
     Product getProductById(Integer productId);
 

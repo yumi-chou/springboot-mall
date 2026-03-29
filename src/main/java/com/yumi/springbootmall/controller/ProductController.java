@@ -1,5 +1,7 @@
 package com.yumi.springbootmall.controller;
 
+import com.yumi.springbootmall.constant.ProductCategory;
+import com.yumi.springbootmall.dto.ProductQueryParams;
 import com.yumi.springbootmall.dto.ProductRequest;
 import com.yumi.springbootmall.model.Product;
 import com.yumi.springbootmall.service.ProductService;
@@ -18,8 +20,15 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/products")
-    public ResponseEntity<List<Product>> getProducts(){
-        List<Product> productList = productService.getProducts();
+    public ResponseEntity<List<Product>> getProducts(
+            @RequestParam (required = false) ProductCategory category,
+            @RequestParam (required = false) String search){
+
+        ProductQueryParams productQueryParams = new ProductQueryParams();
+        productQueryParams.setCategory(category);
+        productQueryParams.setSearch(search);
+
+        List<Product> productList = productService.getProducts(productQueryParams);
         return ResponseEntity.status(HttpStatus.OK).body(productList);
     }
 
