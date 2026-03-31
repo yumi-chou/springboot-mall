@@ -19,6 +19,11 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
 
     @Override
+    public Integer getAllProducts(ProductQueryParams productQueryParams) {
+        return productDao.getAllProducts(productQueryParams);
+    }
+
+    @Override
     public List<Product> getProducts(ProductQueryParams productQueryParams) {
         return productDao.getProducts(productQueryParams);
     }
