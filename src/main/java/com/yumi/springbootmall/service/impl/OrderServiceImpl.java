@@ -4,6 +4,7 @@ import com.yumi.springbootmall.dao.OrderDao;
 import com.yumi.springbootmall.dao.ProductDao;
 import com.yumi.springbootmall.dto.BuyItem;
 import com.yumi.springbootmall.dto.CreateOrderRequest;
+import com.yumi.springbootmall.model.Order;
 import com.yumi.springbootmall.model.OrderItem;
 import com.yumi.springbootmall.model.Product;
 import com.yumi.springbootmall.service.OrderService;
@@ -22,6 +23,17 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private ProductDao productDao;
 
+    @Override
+    public Order getOrderById(Integer orderId) {
+        Order order = orderDao.getOrderById(orderId);
+
+        List<OrderItem> orderItemList = orderDao.getOrderItemsByOrderId(orderId);
+
+        order.setOrderItemList(orderItemList);
+
+        return order;
+    }
+
     @Transactional
     @Override
     public Integer createOrder(Integer userId, CreateOrderRequest createOrderRequest) {
@@ -31,10 +43,11 @@ public class OrderServiceImpl implements OrderService {
         for(BuyItem buyitem : createOrderRequest.getBuyItemList()){
             Product product = productDao.getProductById(buyitem.getProductId());
 
-            //總價
+            // 總價
             int amount = product.getPrice() * buyitem.getQuantity();
             totalAmount = totalAmount + amount;
 
+            // buyItem 轉換成 orderItem
             OrderItem orderItem = new OrderItem();
             orderItem.setProductId(buyitem.getProductId());
             orderItem.setQuantity(buyitem.getQuantity());
