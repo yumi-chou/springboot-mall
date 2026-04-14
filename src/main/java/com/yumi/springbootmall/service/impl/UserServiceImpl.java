@@ -13,7 +13,6 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.server.ResponseStatusException;
 import org.slf4j.Logger;
 
-import java.nio.charset.StandardCharsets;
 
 @Component
 public class UserServiceImpl implements UserService {
