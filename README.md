@@ -61,7 +61,7 @@
 ### 訂單相關
 
 * `POST /users/{userId}/orders`：建立一筆新的訂單，並回傳訂單完整資訊
-* `GET /orders`：查詢訂單列表
+* `GET /users/{userId}/orders"`：查詢訂單列表
 
 ---
 
