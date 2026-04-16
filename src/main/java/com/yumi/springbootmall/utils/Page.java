@@ -6,7 +6,7 @@ public class Page<T> {
     Integer limit;
     Integer offset;
     Integer total;
-    List<T> products;
+    List<T> results;
 
     public Integer getLimit() {
         return limit;
@@ -32,11 +32,11 @@ public class Page<T> {
         this.total = total;
     }
 
-    public List<T> getProducts() {
-        return products;
+    public List<T> getResults() {
+        return results;
     }
 
-    public void setProducts(List<T> products) {
-        this.products = products;
+    public void setResults(List<T> results) {
+        this.results = results;
     }
 }

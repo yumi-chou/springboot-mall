@@ -15,4 +15,5 @@ public class CreateOrderRequest {
     public void setBuyItemList(List<BuyItem> buyItemList) {
         this.buyItemList = buyItemList;
     }
+
 }
